@@ -89,7 +89,7 @@ def togaf_search():
     q = request.args.get("q", "").strip()
     if not q:
         return jsonify({"error": "Missing query param: q"}), 400
-    results = search_vault(q, subfolder="togaf")
+    results = search_vault(q, subfolder="Togaf")
     return jsonify({"query": q, "results": results})
 
 
@@ -106,7 +106,7 @@ def togaf_phase():
     if not folder:
         return jsonify({"error": f"Unknown phase: {n}"}), 400
     try:
-        content = read_note(f"togaf/{folder}", doc)
+        content = read_note(f"Togaf/{folder}", doc)
         return jsonify({"phase": n, "folder": folder, "doc": doc, "content": content})
     except FileNotFoundError as e:
         return jsonify({"error": str(e)}), 404
