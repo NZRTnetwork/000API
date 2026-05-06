@@ -1,0 +1,19 @@
+# Environment — never commit
+.env
+.env.local
+.env.*.local
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+vendor/
+
+# Node
+node_modules/
+dist/
+*.js.map
+
+# OS
+.DS_Store
+Thumbs.db
