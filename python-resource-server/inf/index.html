@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NZRT API — Infrastructure</title>
+  <style>
+    body { font-family: monospace; max-width: 860px; margin: 60px auto; padding: 0 20px; background: #f5f5f5; color: #1a1a1a; line-height: 1.6; }
+    h1 { color: #111; font-size: 1.4rem; margin-bottom: 4px; }
+    .tagline { color: #666; margin-bottom: 40px; }
+    h2 { color: #444; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.1em; margin-top: 40px; border-bottom: 1px solid #ddd; padding-bottom: 6px; }
+    table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 0.875rem; }
+    th { text-align: left; color: #999; font-weight: normal; padding: 6px 12px 6px 0; border-bottom: 1px solid #eee; }
+    td { padding: 7px 12px 7px 0; color: #333; vertical-align: top; border-bottom: 1px solid #f0f0f0; }
+    td.code { color: #16a34a; white-space: nowrap; font-size: 0.8rem; }
+    td.path { color: #0369a1; white-space: nowrap; }
+    .badge { display: inline-block; padding: 1px 7px; border-radius: 3px; font-size: 0.72rem; margin-left: 4px; }
+    .badge.x402 { background: #e0f2fe; color: #075985; border: 1px solid #bae6fd; }
+    pre { background: #fff; border: 1px solid #e0e0e0; padding: 16px; border-radius: 4px; overflow-x: auto; font-size: 0.83rem; color: #333; }
+    a { color: #16a34a; }
+    .back { font-size: 0.8rem; margin-bottom: 32px; }
+    .note { color: #888; font-size: 0.83rem; margin-top: 6px; }
+  </style>
+</head>
+<body>
+
+  <p class="back"><a href="/">← NZRT Knowledge API</a></p>
+
+  <h1>000INF — Infrastructure</h1>
+  <p class="tagline">Hosting, subdomains, cPanel, Tailscale VPN, security architecture, and AI agent governance.</p>
+
+  <h2>Endpoints</h2>
+  <table>
+    <tr><th>Path</th><th>Description</th><th>Auth</th></tr>
+    <tr>
+      <td class="path">GET /app/inf/search?q=</td>
+      <td>Full-text search across Infrastructure vault</td>
+      <td><span class="badge x402">x402 $0.001</span></td>
+    </tr>
+    <tr>
+      <td class="path">GET /app/inf/note?section=&amp;file=</td>
+      <td>Fetch a specific Infrastructure knowledge note</td>
+      <td><span class="badge x402">x402 $0.001</span></td>
+    </tr>
+  </table>
+
+  <h2>Section Reference</h2>
+  <table>
+    <tr><th>section=</th><th>Description</th></tr>
+    <tr><td class="code">00 - Overview</td><td>Infrastructure overview and service map</td></tr>
+    <tr><td class="code">01 - Hosting &amp; cPanel</td><td>Hoopla cPanel, accounts, resource limits</td></tr>
+    <tr><td class="code">02 - Subdomains</td><td>Subdomain inventory, DNS records, routing</td></tr>
+    <tr><td class="code">03 - SSL &amp; DNS</td><td>Certificate management, DNS zones</td></tr>
+    <tr><td class="code">04 - Mail Server</td><td>Email setup, SMTP, SPF/DKIM/DMARC</td></tr>
+    <tr><td class="code">05 - Logs &amp; Cache</td><td>Access logs, error logs, caching config</td></tr>
+    <tr><td class="code">06 - Backups</td><td>Backup strategy, schedules, restoration</td></tr>
+    <tr><td class="code">07 - Deployment</td><td>Deploy workflows, WebDAV, Passenger WSGI</td></tr>
+    <tr><td class="code">08 - Security</td><td>Tailscale VPN, agent credentials, 2FA, audit</td></tr>
+    <tr><td class="code">09 - AI Agents</td><td>Agent roles, task definitions, MCP servers</td></tr>
+    <tr><td class="code">10 - Workflows</td><td>NZRT operating model, channel decisions</td></tr>
+    <tr><td class="code">11 - x402</td><td>x402 protocol, wallets, API payment config</td></tr>
+  </table>
+
+  <h2>Usage Examples</h2>
+  <pre># Search Infrastructure vault
+curl -i "https://api.nzrtnetwork.com/app/inf/search?q=Tailscale"
+
+# Fetch a note
+curl -i "https://api.nzrtnetwork.com/app/inf/note?section=09+-+AI+Agents&amp;file=HOME"</pre>
+
+  <p class="note">x402-compatible clients handle payment automatically. Contact <a href="mailto:nathan@nzrtnetwork.com">nathan@nzrtnetwork.com</a> for MCP server access.</p>
+
+</body>
+</html>

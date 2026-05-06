@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NZRT API — Kubernetes</title>
+  <style>
+    body { font-family: monospace; max-width: 860px; margin: 60px auto; padding: 0 20px; background: #f5f5f5; color: #1a1a1a; line-height: 1.6; }
+    h1 { color: #111; font-size: 1.4rem; margin-bottom: 4px; }
+    .tagline { color: #666; margin-bottom: 40px; }
+    h2 { color: #444; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.1em; margin-top: 40px; border-bottom: 1px solid #ddd; padding-bottom: 6px; }
+    table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 0.875rem; }
+    th { text-align: left; color: #999; font-weight: normal; padding: 6px 12px 6px 0; border-bottom: 1px solid #eee; }
+    td { padding: 7px 12px 7px 0; color: #333; vertical-align: top; border-bottom: 1px solid #f0f0f0; }
+    td.code { color: #16a34a; white-space: nowrap; font-size: 0.8rem; }
+    td.path { color: #0369a1; white-space: nowrap; }
+    .badge { display: inline-block; padding: 1px 7px; border-radius: 3px; font-size: 0.72rem; margin-left: 4px; }
+    .badge.x402 { background: #e0f2fe; color: #075985; border: 1px solid #bae6fd; }
+    pre { background: #fff; border: 1px solid #e0e0e0; padding: 16px; border-radius: 4px; overflow-x: auto; font-size: 0.83rem; color: #333; }
+    a { color: #16a34a; }
+    .back { font-size: 0.8rem; margin-bottom: 32px; }
+    .note { color: #888; font-size: 0.83rem; margin-top: 6px; }
+  </style>
+</head>
+<body>
+
+  <p class="back"><a href="/">← NZRT Knowledge API</a></p>
+
+  <h1>000K8S — Kubernetes</h1>
+  <p class="tagline">Minikube, Kagent orchestration, and NZRT agent deployment documentation.</p>
+
+  <h2>Endpoints</h2>
+  <table>
+    <tr><th>Path</th><th>Description</th><th>Auth</th></tr>
+    <tr>
+      <td class="path">GET /app/k8s/search?q=</td>
+      <td>Full-text search across Kubernetes vault</td>
+      <td><span class="badge x402">x402 $0.001</span></td>
+    </tr>
+    <tr>
+      <td class="path">GET /app/k8s/note?section=&amp;file=</td>
+      <td>Fetch a specific Kubernetes knowledge note</td>
+      <td><span class="badge x402">x402 $0.001</span></td>
+    </tr>
+  </table>
+
+  <h2>Section Reference</h2>
+  <table>
+    <tr><th>section=</th><th>Description</th></tr>
+    <tr><td class="code">00 - Overview</td><td>Cluster overview, Minikube setup</td></tr>
+    <tr><td class="code">01 - Core Concepts</td><td>Pods, deployments, services, namespaces</td></tr>
+    <tr><td class="code">02 - Cluster Management</td><td>Nodes, contexts, kubeconfig</td></tr>
+    <tr><td class="code">03 - Workloads</td><td>Deployments, StatefulSets, Jobs, CronJobs</td></tr>
+    <tr><td class="code">04 - Networking</td><td>Ingress, services, DNS, network policies</td></tr>
+    <tr><td class="code">05 - Storage</td><td>PVs, PVCs, StorageClasses</td></tr>
+    <tr><td class="code">06 - Security</td><td>RBAC, secrets, service accounts</td></tr>
+    <tr><td class="code">07 - Monitoring</td><td>Metrics, logging, dashboards</td></tr>
+    <tr><td class="code">08 - NZRT Config</td><td>NZRT-specific cluster config and agent deployments</td></tr>
+    <tr><td class="code">10 - Kagent</td><td>Kagent orchestration, agent task scheduling</td></tr>
+  </table>
+
+  <h2>Usage Examples</h2>
+  <pre># Search Kubernetes vault
+curl -i "https://api.nzrtnetwork.com/app/k8s/search?q=kagent"
+
+# Fetch a note
+curl -i "https://api.nzrtnetwork.com/app/k8s/note?section=10+-+Kagent&amp;file=HOME"</pre>
+
+  <p class="note">x402-compatible clients handle payment automatically. Contact <a href="mailto:nathan@nzrtnetwork.com">nathan@nzrtnetwork.com</a> for MCP server access.</p>
+
+</body>
+</html>
