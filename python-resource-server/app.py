@@ -13,7 +13,6 @@ DOMAIN_MAP = {
     "wor": "Wordpress",
     "git": "Github",
     "inf": "Infrastructure",
-    "llm": "LLM",
     "bch": "Blockchain",
     "k8s": "Kubernetes",
 }

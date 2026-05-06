@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NZRT API — Dolibarr ERP</title>
+  <style>
+    body { font-family: monospace; max-width: 860px; margin: 60px auto; padding: 0 20px; background: #f5f5f5; color: #1a1a1a; line-height: 1.6; }
+    h1 { color: #111; font-size: 1.4rem; margin-bottom: 4px; }
+    .tagline { color: #666; margin-bottom: 40px; }
+    h2 { color: #444; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.1em; margin-top: 40px; border-bottom: 1px solid #ddd; padding-bottom: 6px; }
+    table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 0.875rem; }
+    th { text-align: left; color: #999; font-weight: normal; padding: 6px 12px 6px 0; border-bottom: 1px solid #eee; }
+    td { padding: 7px 12px 7px 0; color: #333; vertical-align: top; border-bottom: 1px solid #f0f0f0; }
+    td.code { color: #16a34a; white-space: nowrap; font-size: 0.8rem; }
+    td.path { color: #0369a1; white-space: nowrap; }
+    .badge { display: inline-block; padding: 1px 7px; border-radius: 3px; font-size: 0.72rem; margin-left: 4px; }
+    .badge.x402 { background: #e0f2fe; color: #075985; border: 1px solid #bae6fd; }
+    pre { background: #fff; border: 1px solid #e0e0e0; padding: 16px; border-radius: 4px; overflow-x: auto; font-size: 0.83rem; color: #333; }
+    a { color: #16a34a; }
+    .back { font-size: 0.8rem; margin-bottom: 32px; }
+    .note { color: #888; font-size: 0.83rem; margin-top: 6px; }
+  </style>
+</head>
+<body>
+
+  <p class="back"><a href="/">← NZRT Knowledge API</a></p>
+
+  <h1>000DOL — Dolibarr ERP</h1>
+  <p class="tagline">CRM, invoicing, HR, products, and agent REST API patterns for the NZRT ERP system.</p>
+
+  <h2>Endpoints</h2>
+  <table>
+    <tr><th>Path</th><th>Description</th><th>Auth</th></tr>
+    <tr>
+      <td class="path">GET /app/dol/search?q=</td>
+      <td>Full-text search across Dolibarr vault</td>
+      <td><span class="badge x402">x402 $0.001</span></td>
+    </tr>
+    <tr>
+      <td class="path">GET /app/dol/note?section=&amp;file=</td>
+      <td>Fetch a specific Dolibarr knowledge note</td>
+      <td><span class="badge x402">x402 $0.001</span></td>
+    </tr>
+  </table>
+
+  <h2>Section Reference</h2>
+  <table>
+    <tr><th>section=</th><th>Description</th></tr>
+    <tr><td class="code">01 - Product Management</td><td>Catalogue, stock, BOM, manufacturing</td></tr>
+    <tr><td class="code">02 - Customer &amp; Sales</td><td>Proposals, orders, invoices, POS, opportunities</td></tr>
+    <tr><td class="code">03 - Supplier &amp; Purchase</td><td>Vendors, purchase orders, delivery, invoices</td></tr>
+    <tr><td class="code">04 - Finance &amp; Accounting</td><td>Accounting, bank, payments, reports</td></tr>
+    <tr><td class="code">05 - Collaboration</td><td>Calendar, projects, events</td></tr>
+    <tr><td class="code">06 - Human Resources</td><td>Staff, leave, expenses, timesheets</td></tr>
+    <tr><td class="code">07 - Document Management</td><td>EDM, emailing, email collector</td></tr>
+    <tr><td class="code">08 - Administration</td><td>Users, permissions, modules</td></tr>
+    <tr><td class="code">09 - Integrations</td><td>WordPress, REST API, payments, LDAP</td></tr>
+    <tr><td class="code">10 - Reference</td><td>API reference, troubleshooting</td></tr>
+    <tr><td class="code">11 - Configuration</td><td>API keys, SMTP, database settings</td></tr>
+  </table>
+
+  <h2>Usage Examples</h2>
+  <pre># Search Dolibarr vault
+curl -i "https://api.nzrtnetwork.com/app/dol/search?q=invoice"
+
+# Fetch a note
+curl -i "https://api.nzrtnetwork.com/app/dol/note?section=09+-+Integrations&amp;file=REST+API"</pre>
+
+  <p class="note">x402-compatible clients handle payment automatically. Contact <a href="mailto:nathan@nzrtnetwork.com">nathan@nzrtnetwork.com</a> for MCP server access.</p>
+
+</body>
+</html>
