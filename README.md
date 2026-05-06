@@ -1,0 +1,94 @@
+# nzrt-x402
+
+Pay-per-query knowledge API for the NZRT Network vault — powered by [x402](https://x402.org) micropayments on Base.
+
+Live at **https://api.nzrtnetwork.com**
+
+## What it is
+
+An AI agent calls an endpoint. The server returns HTTP 402 with payment details. The agent pays $0.001 USDC on-chain via the x402 facilitator, retries with proof, and gets the knowledge back. No API keys. No subscriptions. Agent pays at request time.
+
+```
+AI agent  →  GET /ncl/search?q=users
+          ←  402 X-Payment-Required: <base64>
+          →  pay $0.001 USDC on Base
+          →  retry with X-Payment header
+          ←  200 { results: [...] }
+```
+
+## Endpoints
+
+| Path | Description | Auth |
+|------|-------------|------|
+| `GET /health` | Status, network, domains | Free |
+| `GET /wiki/search?q=` | Full-text search across all vault | x402 |
+| `GET /wiki/note?section=&file=` | Fetch any vault note | x402 |
+| `GET /togaf/search?q=` | Search TOGAF / EA content | x402 |
+| `GET /togaf/phase?n=&doc=` | Fetch TOGAF ADM phase doc | x402 |
+| `GET /<domain>/search?q=` | Search a specific domain | x402 |
+| `GET /<domain>/note?section=&file=` | Fetch note from a domain | x402 |
+
+**Available domains:** `ncl` `dol` `wor` `git` `inf` `llm` `bch` `k8s`
+
+## Repo structure
+
+```
+python-resource-server/   Flask x402 resource server (deployed to Hoopla cPanel)
+mcp-server/               TypeScript MCP client (Claude Desktop integration)
+resource-server/          TypeScript resource server (experimental)
+```
+
+## Setup
+
+### Python resource server
+
+```bash
+cd python-resource-server
+pip install -r requirements.txt
+cp .env.example .env   # fill in values
+python app.py
+```
+
+`.env` values needed:
+```
+VAULT_PATH=/path/to/obsidian/vault
+EVM_ADDRESS=0x...          # receiving wallet
+FACILITATOR_URL=https://x402.org/facilitator
+NETWORK=eip155:84532       # Base Sepolia (testnet) or eip155:8453 (mainnet)
+PRICE_PER_REQUEST=$0.001
+```
+
+### MCP server (Claude Desktop)
+
+```bash
+cd mcp-server
+npm install
+npm run build
+```
+
+Add to `claude_desktop_config.json`:
+```json
+{
+  "mcpServers": {
+    "nzrt-wiki": {
+      "command": "node",
+      "args": ["/path/to/nzrt-x402/mcp-server/dist/index.js"],
+      "env": {
+        "EVM_PRIVATE_KEY": "0x...",
+        "RESOURCE_SERVER_URL": "https://api.nzrtnetwork.com/app"
+      }
+    }
+  }
+}
+```
+
+The MCP server auto-pays x402 when Claude calls `get_wiki_note` or `search_wiki`.
+
+## Network
+
+- Testnet: Base Sepolia (`eip155:84532`)
+- Mainnet: Base (`eip155:8453`) — planned
+
+## Contact
+
+nathan@nzrtnetwork.com

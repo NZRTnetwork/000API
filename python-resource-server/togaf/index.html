@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NZRT API — TOGAF / EA</title>
+  <style>
+    body { font-family: monospace; max-width: 860px; margin: 60px auto; padding: 0 20px; background: #f5f5f5; color: #1a1a1a; line-height: 1.6; }
+    h1 { color: #111; font-size: 1.4rem; margin-bottom: 4px; }
+    .tagline { color: #666; margin-bottom: 40px; }
+    h2 { color: #444; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.1em; margin-top: 40px; border-bottom: 1px solid #ddd; padding-bottom: 6px; }
+    table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 0.875rem; }
+    th { text-align: left; color: #999; font-weight: normal; padding: 6px 12px 6px 0; border-bottom: 1px solid #eee; }
+    td { padding: 7px 12px 7px 0; color: #333; vertical-align: top; border-bottom: 1px solid #f0f0f0; }
+    td.code { color: #16a34a; white-space: nowrap; font-size: 0.8rem; }
+    td.path { color: #0369a1; white-space: nowrap; }
+    .badge { display: inline-block; padding: 1px 7px; border-radius: 3px; font-size: 0.72rem; margin-left: 4px; }
+    .badge.free { background: #dcfce7; color: #166534; border: 1px solid #bbf7d0; }
+    .badge.x402 { background: #e0f2fe; color: #075985; border: 1px solid #bae6fd; }
+    pre { background: #fff; border: 1px solid #e0e0e0; padding: 16px; border-radius: 4px; overflow-x: auto; font-size: 0.83rem; color: #333; }
+    a { color: #16a34a; }
+    .back { font-size: 0.8rem; margin-bottom: 32px; }
+    .note { color: #888; font-size: 0.83rem; margin-top: 6px; }
+  </style>
+</head>
+<body>
+
+  <p class="back"><a href="/">← NZRT Knowledge API</a></p>
+
+  <h1>000TOG — TOGAF / Enterprise Architecture</h1>
+  <p class="tagline">ADM phases, catalogs, matrices, ArchiMate, and NZRT-specific architecture content.</p>
+
+  <h2>Endpoints</h2>
+  <table>
+    <tr><th>Path</th><th>Description</th><th>Auth</th></tr>
+    <tr>
+      <td class="path">GET /app/togaf/search?q=</td>
+      <td>Full-text search across TOGAF vault</td>
+      <td><span class="badge x402">x402 $0.001</span></td>
+    </tr>
+    <tr>
+      <td class="path">GET /app/togaf/phase?n=&amp;doc=</td>
+      <td>Fetch specific TOGAF phase document</td>
+      <td><span class="badge x402">x402 $0.001</span></td>
+    </tr>
+  </table>
+
+  <h2>ADM Phase Reference</h2>
+  <table>
+    <tr><th>n=</th><th>Phase</th><th>Description</th></tr>
+    <tr><td class="code">1</td><td>Preliminary Phase</td><td>Framework setup, principles, governance</td></tr>
+    <tr><td class="code">2</td><td>Architecture Vision</td><td>Scope, stakeholders, high-level vision</td></tr>
+    <tr><td class="code">3</td><td>Business Architecture</td><td>Business strategy, processes, org structure</td></tr>
+    <tr><td class="code">4</td><td>Information Systems Architecture</td><td>Data and application architectures</td></tr>
+    <tr><td class="code">5</td><td>Technology Architecture</td><td>Infrastructure and platform architecture</td></tr>
+    <tr><td class="code">6</td><td>Opportunities &amp; Solutions</td><td>Work packages, transition architectures</td></tr>
+    <tr><td class="code">7</td><td>Migration Planning</td><td>Roadmap, implementation sequencing</td></tr>
+    <tr><td class="code">8</td><td>Implementation Governance</td><td>Conformance, contracts, compliance</td></tr>
+    <tr><td class="code">9</td><td>Requirements Management</td><td>Requirements repository, traceability</td></tr>
+    <tr><td class="code">11</td><td>NZRT Architecture</td><td>NZRT-specific EA decisions and patterns</td></tr>
+    <tr><td class="code">catalogs</td><td>Catalogs, Matrices &amp; Diagrams</td><td>Stakeholder, role, and capability catalogs</td></tr>
+  </table>
+
+  <h2>Usage Examples</h2>
+  <pre># Search TOGAF vault
+curl -i "https://api.nzrtnetwork.com/app/togaf/search?q=stakeholder"
+# → 402 Payment Required (unpaid)
+# → 200 OK + results (after x402 payment)
+
+# Fetch a phase document
+curl -i "https://api.nzrtnetwork.com/app/togaf/phase?n=2&amp;doc=Architecture+Vision"
+# → 402 Payment Required (unpaid)
+# → 200 OK + document content (after x402 payment)</pre>
+
+  <p class="note">x402-compatible clients (Claude Desktop MCP server) handle payment automatically. Contact <a href="mailto:nathan@nzrtnetwork.com">nathan@nzrtnetwork.com</a> for MCP server access.</p>
+
+</body>
+</html>

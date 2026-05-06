@@ -1,0 +1,8 @@
+# DO NOT REMOVE. CLOUDLINUX PASSENGER CONFIGURATION BEGIN
+PassengerAppRoot "/home/nzrtnetw/api.nzrtnetwork.com/app"
+PassengerBaseURI "/app"
+PassengerPython "/home/nzrtnetw/virtualenv/home/nzrtnetw/api.nzrtnetwork.com/app/3.8/bin/python"
+# DO NOT REMOVE. CLOUDLINUX PASSENGER CONFIGURATION END
+PassengerEnabled on
+PassengerAppType wsgi
+PassengerStartupFile passenger_wsgi.py

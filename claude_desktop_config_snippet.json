@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "nzrt-wiki": {
+      "command": "node",
+      "args": ["C:/Users/Natha/nzrt-x402/mcp-server/dist/index.js"],
+      "env": {
+        "EVM_PRIVATE_KEY": "0xYOUR_PAYING_WALLET_PRIVATE_KEY",
+        "RESOURCE_SERVER_URL": "http://localhost:3402"
+      }
+    }
+  }
+}
