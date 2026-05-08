@@ -30,6 +30,34 @@ AI agent  →  GET /ncl/search?q=users
 
 **Available domains:** `ncl` `dol` `wor` `git` `inf` `llm` `bch` `k8s`
 
+## Knowledge Domains
+
+| Domain | Code | Content |
+|--------|------|---------|
+| `bch` | 000BCH | x402 protocol, USDC, Base network, wallet setup, smart contracts |
+| `dol` | 000DOL | Dolibarr ERP: CRM, invoicing, HR, products, agent REST API patterns |
+| `git` | 000GIT | GitHub repos, workflows, deploy pipelines, agent scripts |
+| `inf` | 000INF | Hosting, subdomains, cPanel, Tailscale VPN, security architecture |
+| `k8s` | 000K8S | Minikube, Kagent orchestration, agent deployments |
+| `llm` | 000LLM | AI agent roles, task definitions, MCP servers, workflows |
+| `ncl` | 000NCL | Nextcloud: setup, agent folders, WebDAV, OCS API, user management |
+| `wor` | 000WOR | WordPress: ICS site, NCS site, REST API, Kadence, WP agent patterns |
+
+Each domain has folder-level `section=` values — see `https://api.nzrtnetwork.com/<domain>/` for the full section reference.
+
+## Example
+
+```bash
+# Search all vault content
+curl -i "https://api.nzrtnetwork.com/app/wiki/search?q=x402"
+
+# Fetch a specific note (after x402 payment)
+curl -i "https://api.nzrtnetwork.com/app/bch/note?section=01+-+Core+Concepts&file=Ethereum+%26+Base+Network"
+
+# Check API status (free)
+curl "https://api.nzrtnetwork.com/app/health"
+```
+
 ## Repo structure
 
 ```
