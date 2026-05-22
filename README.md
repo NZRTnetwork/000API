@@ -114,9 +114,20 @@ The MCP server auto-pays x402 when Claude calls `get_wiki_note` or `search_wiki`
 
 ## Network
 
-- Testnet: Base Sepolia (`eip155:84532`)
-- Mainnet: Base (`eip155:8453`) — planned
+- Testnet: Base Sepolia (`eip155:84532`) — current
+- Mainnet: Base (`eip155:8453`) — migration in progress
+
+Switch `.env` values to go live:
+```
+NETWORK=eip155:8453
+USDC_CONTRACT=0x833589fcd6edb6e08f4c7c32d4f71b54bda02913
+```
+
+## Pricing
+
+`$0.001 USDC` per request. Set via `PRICE_PER_REQUEST` in `.env` — do **not** use cPanel environment variables (lswsgi shell-expands `$` in values).
 
 ## Contact
 
-nathan@nzrtnetwork.com
+nathan@nzrtnetwork.com  
+[nzrtnetwork.com](https://nzrtnetwork.com)
