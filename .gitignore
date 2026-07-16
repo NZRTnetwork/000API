@@ -1,4 +1,4 @@
-# Environment — never commit
+﻿# Environment â€” never commit
 .env
 .env.local
 .env.*.local
@@ -17,3 +17,10 @@ dist/
 # OS
 .DS_Store
 Thumbs.db
+# Podcast media - YouTube hosts these; GitHub keeps manifest + captions only
+POD-api/*.mp3
+POD-api/*.mp4
+POD-api/cards/
+POD-api/mp4/
+!POD-api/manifest.csv
+!POD-api/*.srt
