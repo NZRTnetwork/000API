@@ -1,0 +1,9 @@
+filename,slug,title,type,duration_sec,size_bytes,srt,state,youtube_id
+mcp-integration-animated.mp4,mcp-integration-animated,Mcp Integration,mp4,286.0,6177799,C:\RPO-NZT\RPO-agt\podcast_output\rough_test\mcp-integration.srt,pending,
+mcp-integration.mp3,mcp-integration,Mcp Integration,mp3,292.2,1753200,C:\RPO-NZT\RPO-agt\podcast_output\rough_test\mcp-integration.srt,pending,
+payment-flow-animated.mp4,payment-flow-animated,Payment Flow,mp4,253.7,5110396,C:\RPO-NZT\RPO-agt\podcast_output\rough_test\payment-flow.srt,pending,
+payment-flow.mp3,payment-flow,Payment Flow,mp3,259.9,1559664,C:\RPO-NZT\RPO-agt\podcast_output\rough_test\payment-flow.srt,pending,
+protocol-reference-animated.mp4,protocol-reference-animated,Protocol Reference,mp4,287.7,5859691,C:\RPO-NZT\RPO-agt\podcast_output\rough_test\protocol-reference.srt,pending,
+protocol-reference.mp3,protocol-reference,Protocol Reference,mp3,293.9,1763568,C:\RPO-NZT\RPO-agt\podcast_output\rough_test\protocol-reference.srt,pending,
+x402-overview-animated.mp4,x402-overview-animated,X402 Overview,mp4,256.2,12249657,C:\RPO-NZT\RPO-agt\podcast_output\rough_test\x402-overview.srt,pending,
+x402-overview.mp3,x402-overview,X402 Overview,mp3,262.5,1574928,C:\RPO-NZT\RPO-agt\podcast_output\rough_test\x402-overview.srt,pending,
