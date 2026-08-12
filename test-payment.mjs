@@ -3,7 +3,7 @@ import { x402Client, wrapAxiosWithPayment } from "@x402/axios";
 import { ExactEvmScheme } from "@x402/evm/exact/client";
 import { privateKeyToAccount } from "viem/accounts";
 
-const privateKey = "***REMOVED_LEAKED_KEY***";
+const privateKey = process.env.TEST_PRIVATE_KEY; // set TEST_PRIVATE_KEY in env; never commit a real key
 const baseURL = "http://localhost:3402";
 
 console.log("Building signer...");
