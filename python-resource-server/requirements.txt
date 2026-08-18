@@ -1,3 +1,4 @@
 flask>=3.0,<3.1
 requests>=2.31
 python-dotenv>=1.0
+cryptography>=41,<44      # Ed25519 JWT for CDP facilitator auth (Base mainnet); Python 3.8-compatible

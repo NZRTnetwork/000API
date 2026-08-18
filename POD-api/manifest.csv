@@ -1,9 +1,9 @@
 filename,slug,title,type,duration_sec,size_bytes,srt,state,youtube_id,video_rendered,video_file
 mcp-integration-animated.mp4,mcp-integration-animated,Mcp Integration,mp4,286.0,6177799,C:\RPO-SAI\SYS\PLA\WIN\FRA\FAI\ORG\RPO-NZT\OPS\RPO-agt\podcast_output\rough_test\mcp-integration.srt,pending,,yes,mcp-integration-animated.mp4
-mcp-integration.mp3,mcp-integration,Mcp Integration,mp3,292.2,1753200,C:\RPO-SAI\SYS\PLA\WIN\FRA\FAI\ORG\RPO-NZT\OPS\RPO-agt\podcast_output\rough_test\mcp-integration.srt,pending,,yes,mp4/mcp-integration.mp4
+mcp-integration.mp3,mcp-integration,Mcp Integration,mp3,292.2,1753200,C:\RPO-SAI\SYS\PLA\WIN\FRA\FAI\ORG\RPO-NZT\OPS\RPO-agt\podcast_output\rough_test\mcp-integration.srt,pending,n9tcSnvuvTw,yes,mp4/mcp-integration.mp4
 payment-flow-animated.mp4,payment-flow-animated,Payment Flow,mp4,253.7,5110396,C:\RPO-SAI\SYS\PLA\WIN\FRA\FAI\ORG\RPO-NZT\OPS\RPO-agt\podcast_output\rough_test\payment-flow.srt,pending,,yes,payment-flow-animated.mp4
-payment-flow.mp3,payment-flow,Payment Flow,mp3,259.9,1559664,C:\RPO-SAI\SYS\PLA\WIN\FRA\FAI\ORG\RPO-NZT\OPS\RPO-agt\podcast_output\rough_test\payment-flow.srt,pending,,yes,mp4/payment-flow.mp4
+payment-flow.mp3,payment-flow,Payment Flow,mp3,259.9,1559664,C:\RPO-SAI\SYS\PLA\WIN\FRA\FAI\ORG\RPO-NZT\OPS\RPO-agt\podcast_output\rough_test\payment-flow.srt,pending,cuMkZ-ybLnE,yes,mp4/payment-flow.mp4
 protocol-reference-animated.mp4,protocol-reference-animated,Protocol Reference,mp4,287.7,5859691,C:\RPO-SAI\SYS\PLA\WIN\FRA\FAI\ORG\RPO-NZT\OPS\RPO-agt\podcast_output\rough_test\protocol-reference.srt,pending,,yes,protocol-reference-animated.mp4
-protocol-reference.mp3,protocol-reference,Protocol Reference,mp3,293.9,1763568,C:\RPO-SAI\SYS\PLA\WIN\FRA\FAI\ORG\RPO-NZT\OPS\RPO-agt\podcast_output\rough_test\protocol-reference.srt,pending,,yes,mp4/protocol-reference.mp4
+protocol-reference.mp3,protocol-reference,Protocol Reference,mp3,293.9,1763568,C:\RPO-SAI\SYS\PLA\WIN\FRA\FAI\ORG\RPO-NZT\OPS\RPO-agt\podcast_output\rough_test\protocol-reference.srt,pending,nLo5nbZf9Po,yes,mp4/protocol-reference.mp4
 x402-overview-animated.mp4,x402-overview-animated,X402 Overview,mp4,256.2,12249657,C:\RPO-SAI\SYS\PLA\WIN\FRA\FAI\ORG\RPO-NZT\OPS\RPO-agt\podcast_output\rough_test\x402-overview.srt,pending,,yes,x402-overview-animated.mp4
-x402-overview.mp3,x402-overview,X402 Overview,mp3,262.5,1574928,C:\RPO-SAI\SYS\PLA\WIN\FRA\FAI\ORG\RPO-NZT\OPS\RPO-agt\podcast_output\rough_test\x402-overview.srt,pending,,yes,mp4/x402-overview.mp4
+x402-overview.mp3,x402-overview,X402 Overview,mp3,262.5,1574928,C:\RPO-SAI\SYS\PLA\WIN\FRA\FAI\ORG\RPO-NZT\OPS\RPO-agt\podcast_output\rough_test\x402-overview.srt,pending,66ms6iPJap0,yes,mp4/x402-overview.mp4

@@ -30,9 +30,9 @@ AI agent  →  GET /ncl/search?q=users
 
 **Available domains:** `ncl` `dol` `wor` `git` `inf` `llm` `bch` `k8s`
 
-## Knowledge Domains
+## Knowledge Topics
 
-| Domain | Code | Content |
+| Topic | Code | Content |
 |--------|------|---------|
 | `bch` | 000BCH | x402 protocol, USDC, Base network, wallet setup, smart contracts |
 | `dol` | 000DOL | Dolibarr ERP: CRM, invoicing, HR, products, agent REST API patterns |
@@ -43,7 +43,7 @@ AI agent  →  GET /ncl/search?q=users
 | `ncl` | 000NCL | Nextcloud: setup, agent folders, WebDAV, OCS API, user management |
 | `wor` | 000WOR | WordPress: ICS site, NCS site, REST API, Kadence, WP agent patterns |
 
-Each domain has folder-level `section=` values — see `https://api.nzrtnetwork.com/<domain>/` for the full section reference.
+Each Topic has folder-level `section=` values — see `https://api.nzrtnetwork.com/<domain>/` for the full section reference.
 
 ## Example
 
@@ -114,14 +114,24 @@ The MCP server auto-pays x402 when Claude calls `get_wiki_note` or `search_wiki`
 
 ## Network
 
-- Testnet: Base Sepolia (`eip155:84532`) — current
-- Mainnet: Base (`eip155:8453`) — migration in progress
+- Testnet: Base Sepolia — public `x402.org` facilitator (unauthenticated), `NETWORK=eip155:84532`. Current.
+- Mainnet: Base — **Coinbase CDP facilitator**. The public `x402.org` facilitator does **not**
+  settle Base mainnet (its `/supported` lists Base Sepolia only), so mainnet routes through CDP.
 
-Switch `.env` values to go live:
+The middleware picks the facilitator automatically: set the CDP Secret API Key and every
+`verify`/`settle` call is authenticated with a short-lived JWT to
+`https://api.cdp.coinbase.com/platform/v2/x402`; with no CDP key, calls go to `FACILITATOR_URL`
+unauthenticated (the testnet path). CDP fees: first 1,000 onchain settlements/month free, then
+$0.001 each.
+
+Go live — set on the server `.env` (uses the x402 v2 schema):
 ```
 NETWORK=eip155:8453
-USDC_CONTRACT=0x833589fcd6edb6e08f4c7c32d4f71b54bda02913
+EVM_ADDRESS=<Base-mainnet receiving address>
+CDP_API_KEY_ID=<CDP Secret API Key id>
+CDP_API_KEY_SECRET=<CDP Secret API Key secret>
 ```
+The CDP path needs `cryptography` vendored for the server's Python (3.8) to sign the JWT.
 
 ## Pricing
 
