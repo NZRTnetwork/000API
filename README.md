@@ -6,12 +6,12 @@ Live at **https://api.nzrtnetwork.com**
 
 ## What it is
 
-An AI agent calls an endpoint. The server returns HTTP 402 with payment details. The agent pays $0.001 USDC on-chain via the x402 facilitator, retries with proof, and gets the knowledge back. No API keys. No subscriptions. Agent pays at request time.
+An AI agent calls an endpoint. The server returns HTTP 402 with payment details. The agent pays $0.005 USDC on-chain via the x402 facilitator, retries with proof, and gets the knowledge back. No API keys. No subscriptions. Agent pays at request time.
 
 ```
 AI agent  →  GET /ncl/search?q=users
           ←  402 X-Payment-Required: <base64>
-          →  pay $0.001 USDC on Base
+          →  pay $0.005 USDC on Base
           →  retry with X-Payment header
           ←  200 { results: [...] }
 ```
@@ -28,7 +28,7 @@ AI agent  →  GET /ncl/search?q=users
 | `GET /<domain>/search?q=` | Search a specific domain | x402 |
 | `GET /<domain>/note?section=&file=` | Fetch note from a domain | x402 |
 
-**Available domains:** `ncl` `dol` `wor` `git` `inf` `llm` `bch` `k8s`
+**Available domains:** `ncl` `dol` `wor` `git` `inf` `bch` `k8s`
 
 ## Knowledge Topics
 
@@ -39,7 +39,6 @@ AI agent  →  GET /ncl/search?q=users
 | `git` | 000GIT | GitHub repos, workflows, deploy pipelines, agent scripts |
 | `inf` | 000INF | Hosting, subdomains, cPanel, Tailscale VPN, security architecture |
 | `k8s` | 000K8S | Minikube, Kagent orchestration, agent deployments |
-| `llm` | 000LLM | AI agent roles, task definitions, MCP servers, workflows |
 | `ncl` | 000NCL | Nextcloud: setup, agent folders, WebDAV, OCS API, user management |
 | `wor` | 000WOR | WordPress: ICS site, NCS site, REST API, Kadence, WP agent patterns |
 
@@ -82,8 +81,8 @@ python app.py
 VAULT_PATH=/path/to/obsidian/vault
 EVM_ADDRESS=0x...          # receiving wallet
 FACILITATOR_URL=https://x402.org/facilitator
-NETWORK=eip155:84532       # Base Sepolia (testnet) or eip155:8453 (mainnet)
-PRICE_PER_REQUEST=$0.001
+NETWORK=eip155:8453        # Base mainnet (live) or eip155:84532 (Sepolia testnet)
+PRICE_PER_REQUEST=$0.005
 ```
 
 ### MCP server (Claude Desktop)
@@ -114,8 +113,7 @@ The MCP server auto-pays x402 when Claude calls `get_wiki_note` or `search_wiki`
 
 ## Network
 
-- Testnet: Base Sepolia — public `x402.org` facilitator (unauthenticated), `NETWORK=eip155:84532`. Current.
-- Mainnet: Base — **Coinbase CDP facilitator**. The public `x402.org` facilitator does **not**
+- Mainnet: Base — **Coinbase CDP facilitator**, `NETWORK=eip155:8453`. **Live.** The public `x402.org` facilitator does **not**
   settle Base mainnet (its `/supported` lists Base Sepolia only), so mainnet routes through CDP.
 
 The middleware picks the facilitator automatically: set the CDP Secret API Key and every
@@ -135,7 +133,7 @@ The CDP path needs `cryptography` vendored for the server's Python (3.8) to sign
 
 ## Pricing
 
-`$0.001 USDC` per request. Set via `PRICE_PER_REQUEST` in `.env` — do **not** use cPanel environment variables (lswsgi shell-expands `$` in values).
+`$0.005 USDC` per request. Set via `PRICE_PER_REQUEST` in `.env` — do **not** use cPanel environment variables (lswsgi shell-expands `$` in values).
 
 ## Contact
 
