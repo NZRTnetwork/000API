@@ -30,8 +30,6 @@ $0.005 USDC per request, settled on Base mainnet (eip155:8453).
 | `GET /app/<domain>/search?q=` | Search a specific domain | x402 |
 | `GET /app/<domain>/note?section=&file=` | Fetch note from a domain | x402 |
 
-**Available domains:** `ncl` `dol` `wor` `git` `inf` `bch` `k8s`
-
 ## Knowledge Topics
 
 | Topic | Code | Content |
