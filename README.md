@@ -1,12 +1,12 @@
 # nzrt-x402
 
-Pay-per-query knowledge API for the NZRT Network vault — powered by [x402](https://x402.org) micropayments on Base.
+Pay-per-query access to the NZRT knowledge vault — [x402](https://x402.org) micropayments on Base mainnet. Includes an MCP server for Claude Desktop.
 
 Live at **https://api.nzrtnetwork.com**
 
 ## What it is
 
-An AI agent calls an endpoint. The server returns HTTP 402 with payment details. The agent pays $0.005 USDC on-chain via the x402 facilitator, retries with proof, and gets the knowledge back. No API keys. No subscriptions. Agent pays at request time.
+An AI agent calls an endpoint. The server returns HTTP 402 with payment details. The agent pays $0.005 USDC on Base, retries with proof, and gets the knowledge back. No account. No API key. No subscription. Agent pays at request time.
 
 ```
 AI agent  →  GET /app/ncl/search?q=users
@@ -16,11 +16,15 @@ AI agent  →  GET /app/ncl/search?q=users
           ←  200 { results: [...] }
 ```
 
+## Pricing
+
+$0.005 USDC per request, settled on Base mainnet (eip155:8453).
+
 ## Endpoints
 
 | Path | Description | Auth |
 |------|-------------|------|
-| `GET /app/health` | Status, network, domains | Free |
+| `GET /app/health` | Status, network, price | Free |
 | `GET /app/wiki/search?q=` | Full-text search across all vault | x402 |
 | `GET /app/wiki/note?section=&file=` | Fetch any vault note | x402 |
 | `GET /app/<domain>/search?q=` | Search a specific domain | x402 |
@@ -39,7 +43,7 @@ AI agent  →  GET /app/ncl/search?q=users
 | `ncl` | 000NCL | Nextcloud: setup, agent folders, WebDAV, OCS API, user management |
 | `wor` | 000WOR | WordPress: ICS site, NCS site, REST API, Kadence, WP agent patterns |
 
-Each Topic has folder-level `section=` values — see `https://api.nzrtnetwork.com/<domain>/` for the full section reference.
+Each topic exposes folder-level `section=` values — see `https://api.nzrtnetwork.com/<domain>/` for the section reference.
 
 ## Example
 
@@ -54,35 +58,9 @@ curl -i "https://api.nzrtnetwork.com/app/bch/note?section=01+-+Core+Concepts&fil
 curl "https://api.nzrtnetwork.com/app/health"
 ```
 
-## Repo structure
+## MCP server (Claude Desktop)
 
-```
-python-resource-server/   Flask x402 resource server (deployed to Hoopla cPanel)
-mcp-server/               TypeScript MCP client (Claude Desktop integration)
-resource-server/          TypeScript resource server (experimental)
-```
-
-## Setup
-
-### Python resource server
-
-```bash
-cd python-resource-server
-pip install -r requirements.txt
-cp .env.example .env   # fill in values
-python app.py
-```
-
-`.env` values needed:
-```
-VAULT_PATH=/path/to/obsidian/vault
-EVM_ADDRESS=0x...          # receiving wallet
-FACILITATOR_URL=https://x402.org/facilitator   # testnet only; mainnet uses CDP (see Go live)
-NETWORK=eip155:84532       # Sepolia testnet for local dev; mainnet is eip155:8453
-PRICE_PER_REQUEST=$0.005
-```
-
-### MCP server (Claude Desktop)
+The agent pays each query automatically from its own wallet — no account, no API key. It exposes two tools: `search_wiki` and `get_wiki_note`.
 
 ```bash
 cd mcp-server
@@ -96,41 +74,14 @@ Add to `claude_desktop_config.json`:
   "mcpServers": {
     "nzrt-wiki": {
       "command": "node",
-      "args": ["/path/to/nzrt-x402/mcp-server/dist/index.js"],
-      "env": {
-        "EVM_PRIVATE_KEY": "0x...",
-        "RESOURCE_SERVER_URL": "https://api.nzrtnetwork.com/app"
-      }
+      "args": ["/path/to/mcp-server/dist/index.js"],
+      "env": { "EVM_PRIVATE_KEY": "0x<your-wallet-key>" }
     }
   }
 }
 ```
 
-The MCP server auto-pays x402 when Claude calls `get_wiki_note` or `search_wiki`.
-
-## Network
-
-- Mainnet: Base — **Coinbase CDP facilitator**, `NETWORK=eip155:8453`. **Live.** The public `x402.org` facilitator does **not**
-  settle Base mainnet (its `/supported` lists Base Sepolia only), so mainnet routes through CDP.
-
-The middleware picks the facilitator automatically: set the CDP Secret API Key and every
-`verify`/`settle` call is authenticated with a short-lived JWT to
-`https://api.cdp.coinbase.com/platform/v2/x402`; with no CDP key, calls go to `FACILITATOR_URL`
-unauthenticated (the testnet path). CDP fees: first 1,000 onchain settlements/month free, then
-$0.001 each.
-
-Go live — set on the server `.env` (uses the x402 v2 schema):
-```
-NETWORK=eip155:8453
-EVM_ADDRESS=<Base-mainnet receiving address>
-CDP_API_KEY_ID=<CDP Secret API Key id>
-CDP_API_KEY_SECRET=<CDP Secret API Key secret>
-```
-The CDP path needs `cryptography` vendored for the server's Python (3.8) to sign the JWT.
-
-## Pricing
-
-`$0.005 USDC` per request. Set via `PRICE_PER_REQUEST` in `.env` — do **not** use cPanel environment variables (lswsgi shell-expands `$` in values).
+The wallet must hold USDC on Base mainnet; each query settles $0.005.
 
 ## Contact
 
