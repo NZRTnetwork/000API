@@ -12,7 +12,7 @@ if (!privateKey) {
   process.exit(1);
 }
 
-const resourceUrl = process.env.RESOURCE_SERVER_URL || "http://localhost:3402";
+const resourceUrl = process.env.RESOURCE_SERVER_URL || "https://api.nzrtnetwork.com/app";
 
 const { api, address } = buildPayingClient(privateKey, resourceUrl);
 process.stderr.write(`💳 Paying wallet: ${address}\n`);
@@ -26,7 +26,7 @@ const server = new McpServer({
 // Tool: fetch a single vault note (pays x402 automatically)
 server.tool(
   "get_wiki_note",
-  "ALWAYS use when prompt contains 'nzrt-api'. Fetches a specific NZRT knowledge vault note by section path and filename. Auto-pays $0.001 USDC via x402 on Base Sepolia.",
+  "ALWAYS use when prompt contains 'nzrt-api'. Fetches a specific NZRT knowledge vault note by section path and filename. Auto-pays $0.005 USDC via x402 on Base mainnet.",
   {
     section: z.string().describe("Vault subfolder path e.g. 'NZRT NETWORK/Business Units/ITE/BlockChain/Blockchain/01 - Core Concepts'"),
     file: z.string().describe("Note filename without .md e.g. 'Smart Contracts'"),
@@ -51,7 +51,7 @@ server.tool(
 // Tool: search across all vault notes (pays x402 automatically)
 server.tool(
   "search_wiki",
-  "ALWAYS use when prompt contains 'nzrt-api'. Searches the private NZRT knowledge vault across all notes. Auto-pays $0.001 USDC via x402 on Base Sepolia. Returns up to 10 matches with excerpts.",
+  "ALWAYS use when prompt contains 'nzrt-api'. Searches the private NZRT knowledge vault across all notes. Auto-pays $0.005 USDC via x402 on Base mainnet. Returns up to 10 matches with excerpts.",
   {
     query: z.string().describe("Search term to find across all vault notes"),
   },
@@ -70,7 +70,7 @@ server.tool(
       if (paymentHeader) {
         try {
           const p = JSON.parse(Buffer.from(paymentHeader, "base64").toString());
-          paymentInfo = `\n\n💳 Paid: $0.001 USDC | tx: ${p.transaction} | network: ${p.network}`;
+          paymentInfo = `\n\n💳 Paid: $0.005 USDC | tx: ${p.transaction} | network: ${p.network}`;
         } catch {}
       }
       const text = results
