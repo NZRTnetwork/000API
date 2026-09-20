@@ -14,8 +14,8 @@ if (!evmAddress) {
 }
 
 const facilitatorUrl = process.env.FACILITATOR_URL || "https://x402.org/facilitator";
-const network = (process.env.NETWORK || "eip155:84532") as `${string}:${string}`; // Base Sepolia testnet
-const price = process.env.PRICE_PER_REQUEST || "$0.001";
+const network = (process.env.NETWORK || "eip155:8453") as `${string}:${string}`; // Base mainnet
+const price = process.env.PRICE_PER_REQUEST || "$0.005";
 const port = parseInt(process.env.PORT || "3402", 10);
 
 const facilitatorClient = new HTTPFacilitatorClient({ url: facilitatorUrl });

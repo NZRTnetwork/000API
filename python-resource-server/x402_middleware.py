@@ -10,7 +10,7 @@ from flask import make_response, jsonify, request
 
 FACILITATOR_URL = os.getenv("FACILITATOR_URL", "https://x402.org/facilitator")
 NETWORK = os.getenv("NETWORK", "eip155:84532")
-PRICE = os.getenv("PRICE_PER_REQUEST", "$0.001")
+PRICE = os.getenv("PRICE_PER_REQUEST", "$0.005")
 EVM_ADDRESS = os.getenv("EVM_ADDRESS", "")
 
 # --- Base mainnet via the Coinbase CDP facilitator ---------------------------------

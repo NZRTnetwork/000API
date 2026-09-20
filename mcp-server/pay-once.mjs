@@ -23,7 +23,7 @@ const api = wrapAxiosWithPayment(axios.create({ baseURL }), client);
 
 console.error(`Payer:    ${signer.address}`);
 console.error(`Resource: ${baseURL}`);
-console.error(`Paying $0.001 USDC on Base mainnet ...\n`);
+console.error(`Paying $0.005 USDC on Base mainnet ...\n`);
 
 try {
   const r = await api.get("/wiki/search", { params: { q: "x402" } });
