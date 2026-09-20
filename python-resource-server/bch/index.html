@@ -35,25 +35,34 @@
     <tr>
       <td class="path">GET /app/bch/search?q=</td>
       <td>Full-text search across Blockchain vault</td>
-      <td><span class="badge x402">x402 $0.001</span></td>
+      <td><span class="badge x402">x402 $0.005</span></td>
     </tr>
     <tr>
       <td class="path">GET /app/bch/note?section=&amp;file=</td>
       <td>Fetch a specific Blockchain knowledge note</td>
-      <td><span class="badge x402">x402 $0.001</span></td>
+      <td><span class="badge x402">x402 $0.005</span></td>
     </tr>
+  </table>
+
+  <h2>Section Reference</h2>
+  <table>
+    <tr><th>section=</th><th>Description</th></tr>
+    <tr><td class="code">00 - Overview</td><td>Blockchain overview, NZRT blockchain architecture</td></tr>
+    <tr><td class="code">01 - Core Concepts</td><td>Ethereum &amp; Base network, gas &amp; transactions, smart contracts, wallets &amp; keys</td></tr>
+    <tr><td class="code">02 - Development Tools</td><td>Alchemy, Etherscan &amp; Basescan, Hardhat, OpenZeppelin</td></tr>
+    <tr><td class="code">03 - Smart Contracts</td><td>Contract deployment, verification, ERC-20 tokens</td></tr>
+    <tr><td class="code">04 - Wallets &amp; Signers</td><td>Gnosis Safe multisig, key management, MetaMask setup</td></tr>
+    <tr><td class="code">06 - Security</td><td>Key security, smart contract security</td></tr>
+    <tr><td class="code">07 - Reference</td><td>Base network reference, blockchain glossary</td></tr>
+    <tr><td class="code">09 - Agentic AI &amp; DeFi</td><td>Agentic AI in DeFi, chain fusion &amp; cross-chain, DAO governance, decentralized AI</td></tr>
   </table>
 
   <h2>Usage Examples</h2>
   <pre># Search Blockchain vault
 curl -i "https://api.nzrtnetwork.com/app/bch/search?q=x402"
-# → 402 Payment Required (unpaid)
-# → 200 OK + results (after x402 payment)
 
 # Fetch a note
-curl -i "https://api.nzrtnetwork.com/app/bch/note?section=&amp;file=HOME"
-# → 402 Payment Required (unpaid)
-# → 200 OK + note content (after x402 payment)</pre>
+curl -i "https://api.nzrtnetwork.com/app/bch/note?section=01+-+Core+Concepts&amp;file=Ethereum+%26+Base+Network"</pre>
 
   <p class="note">x402-compatible clients (Claude Desktop MCP server) handle payment automatically. Contact <a href="mailto:nathan@nzrtnetwork.com">nathan@nzrtnetwork.com</a> for MCP server access.</p>
 
