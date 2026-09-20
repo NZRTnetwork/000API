@@ -9,7 +9,7 @@ Live at **https://api.nzrtnetwork.com**
 An AI agent calls an endpoint. The server returns HTTP 402 with payment details. The agent pays $0.005 USDC on-chain via the x402 facilitator, retries with proof, and gets the knowledge back. No API keys. No subscriptions. Agent pays at request time.
 
 ```
-AI agent  →  GET /ncl/search?q=users
+AI agent  →  GET /app/ncl/search?q=users
           ←  402 X-Payment-Required: <base64>
           →  pay $0.005 USDC on Base
           →  retry with X-Payment header
@@ -20,13 +20,11 @@ AI agent  →  GET /ncl/search?q=users
 
 | Path | Description | Auth |
 |------|-------------|------|
-| `GET /health` | Status, network, domains | Free |
-| `GET /wiki/search?q=` | Full-text search across all vault | x402 |
-| `GET /wiki/note?section=&file=` | Fetch any vault note | x402 |
-| `GET /togaf/search?q=` | Search TOGAF / EA content | x402 |
-| `GET /togaf/phase?n=&doc=` | Fetch TOGAF ADM phase doc | x402 |
-| `GET /<domain>/search?q=` | Search a specific domain | x402 |
-| `GET /<domain>/note?section=&file=` | Fetch note from a domain | x402 |
+| `GET /app/health` | Status, network, domains | Free |
+| `GET /app/wiki/search?q=` | Full-text search across all vault | x402 |
+| `GET /app/wiki/note?section=&file=` | Fetch any vault note | x402 |
+| `GET /app/<domain>/search?q=` | Search a specific domain | x402 |
+| `GET /app/<domain>/note?section=&file=` | Fetch note from a domain | x402 |
 
 **Available domains:** `ncl` `dol` `wor` `git` `inf` `bch` `k8s`
 
@@ -37,7 +35,6 @@ AI agent  →  GET /ncl/search?q=users
 | `bch` | 000BCH | x402 protocol, USDC, Base network, wallet setup, smart contracts |
 | `dol` | 000DOL | Dolibarr ERP: CRM, invoicing, HR, products, agent REST API patterns |
 | `git` | 000GIT | GitHub repos, workflows, deploy pipelines, agent scripts |
-| `inf` | 000INF | Hosting, subdomains, cPanel, Tailscale VPN, security architecture |
 | `k8s` | 000K8S | Minikube, Kagent orchestration, agent deployments |
 | `ncl` | 000NCL | Nextcloud: setup, agent folders, WebDAV, OCS API, user management |
 | `wor` | 000WOR | WordPress: ICS site, NCS site, REST API, Kadence, WP agent patterns |
@@ -80,8 +77,8 @@ python app.py
 ```
 VAULT_PATH=/path/to/obsidian/vault
 EVM_ADDRESS=0x...          # receiving wallet
-FACILITATOR_URL=https://x402.org/facilitator
-NETWORK=eip155:8453        # Base mainnet (live) or eip155:84532 (Sepolia testnet)
+FACILITATOR_URL=https://x402.org/facilitator   # testnet only; mainnet uses CDP (see Go live)
+NETWORK=eip155:84532       # Sepolia testnet for local dev; mainnet is eip155:8453
 PRICE_PER_REQUEST=$0.005
 ```
 
