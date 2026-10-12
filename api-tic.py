@@ -15,7 +15,7 @@ from dotenv import load_dotenv
 load_dotenv(dotenv_path=r"C:\RPO-SAI\SYS\PLA\WIN\FRA\FAI\ORG\RPO-NZT\OPS\RPO-agt\SET\ENV\.env")
 
 DOL_HELPER_URL    = "https://nzrtnetwork.com/dol-sql-helper/"
-DOL_HELPER_SECRET = "nzrt_f7a2c849e3d561b0"
+DOL_HELPER_SECRET = (os.environ.get("DOL_HELPER_SECRET") or __import__("dotenv").dotenv_values(r"C:\RPO-SAI\SYS\PLA\WIN\FRA\FAI\ORG\RPO-NZT\OPS\RPO-agt\SET\ENV\.env").get("DOL_HELPER_SECRET", ""))
 DOL_BASE = "https://erp.nzrtnetwork.com/dolibarr/api/index.php"
 DOL_WEB  = "https://erp.nzrtnetwork.com/dolibarr"
 
