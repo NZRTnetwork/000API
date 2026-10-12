@@ -1,8 +1,8 @@
 """
-create_api_ticket.py — create an x402 API task ticket assigned to dan.
+api-tic.py — create an x402 API task ticket assigned to dan.
 Hardcoded: type=000API, category=DAN, project=24, tag=51.
 
-Usage: python create_api_ticket.py --subject "Add /knowledge endpoint for AI agents" [--message "..."] [--tag-id N]
+Usage: python api-tic.py --subject "Add /knowledge endpoint for AI agents" [--message "..."] [--tag-id N]
 Auth: set DOLIBARR_API_KEY env var (xc Dolibarr API key)
 """
 import argparse
@@ -12,7 +12,7 @@ import json
 import urllib.request
 import urllib.error
 from dotenv import load_dotenv
-load_dotenv(dotenv_path=r"C:\RPO-SAI\SYS\PLA\WIN\FRA\FAI\ORG\RPO-NZT\OPS\RPO-agt\SET\create_agents\.env")
+load_dotenv(dotenv_path=r"C:\RPO-SAI\SYS\PLA\WIN\FRA\FAI\ORG\RPO-NZT\OPS\RPO-agt\SET\ENV\.env")
 
 DOL_HELPER_URL    = "https://nzrtnetwork.com/dol-sql-helper/"
 DOL_HELPER_SECRET = "nzrt_f7a2c849e3d561b0"
